@@ -42,7 +42,7 @@ function Users() {
 
   return (
     <div>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between items-center">
         <h1 className="m-2 text-xl">Users</h1>
         <Button loading={isCreatingUser} onClick={addUser}>
           + Add User
