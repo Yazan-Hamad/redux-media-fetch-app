@@ -20,22 +20,25 @@ function Users() {
 
   const addUser = () => doCreateUser();
 
-  if (isLoadingUsers) {
-    return <Skeleton times={6} className="h-10 w-full" />;
-  }
-  if (loadingUsersError) {
-    return <div>Error..</div>;
-  }
+  let content;
 
-  const renderedUsers = data.map((user) => {
-    return (
-      <div key={user.id} className="mb-2 border rounded">
-        <div className="flex p-2 justify-between items-center cursor-pointer">
-          {user.name}
-        </div>
-      </div>
-    );
-  });
+
+  if (isLoadingUsers) {
+    content = <Skeleton times={6} className="h-10 w-full" />;
+  } else
+  if (loadingUsersError) {
+    content = <div>Error..</div>;
+  } else {
+    content = data.map((user) => {
+        return (
+          <div key={user.id} className="mb-2 border rounded">
+            <div className="flex p-2 justify-between items-center cursor-pointer">
+              {user.name}
+            </div>
+          </div>
+        );
+      });
+  }
 
   return (
     <div>
@@ -46,7 +49,7 @@ function Users() {
         </Button>
         {creatingUserError && "Error Creating User"}
       </div>
-      {renderedUsers}
+      {content}
     </div>
   );
 }
